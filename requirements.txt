@@ -1,0 +1,6 @@
+Flask
+joblib
+numpy
+pandas
+scikit-learn==1.7.2
+gunicorn==23.0.0

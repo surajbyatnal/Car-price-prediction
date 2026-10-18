@@ -4,14 +4,14 @@
 
 Car Price Prediction is a machine learning project that predicts the estimated selling price of a used car based on its company, manufacturing year, kilometers driven, and fuel type.
 
-The project uses **Random Forest Regression**, a supervised machine learning algorithm, to learn patterns from historical car data and estimate prices for new car inputs. It includes data cleaning, preprocessing, model training, evaluation, and prediction.
+The project uses an **Extra Trees Regressor**, a supervised machine learning algorithm, to learn patterns from historical car data and estimate prices for new car inputs. It includes data cleaning, preprocessing, model training, evaluation, and prediction.
 
 ## 🎯 Objectives
 
 - Predict the estimated selling price of used cars.
 - Clean and preprocess real-world car datasets.
 - Handle missing values and categorical features.
-- Train a Random Forest Regression model.
+- Train an Extra Trees regression model.
 - Evaluate model performance using regression metrics.
 - Save the trained model for reuse in a prediction application.
 
@@ -20,8 +20,8 @@ The project uses **Random Forest Regression**, a supervised machine learning alg
 - **Data Cleaning:** Removes invalid prices and cleans numeric values.
 - **Data Preprocessing:** Handles missing values using imputation.
 - **Categorical Encoding:** Converts company and fuel type into numerical features using One-Hot Encoding.
-- **Machine Learning:** Uses Random Forest Regression with 300 trees.
-- **Model Evaluation:** Calculates R² score, Mean Absolute Error (MAE), and Root Mean Squared Error (RMSE).
+- **Machine Learning:** Uses an Extra Trees Regressor with 300 trees.
+- **Model Evaluation:** Reports train/test R² score and test Mean Absolute Error (MAE).
 - **Model Saving:** Saves the trained pipeline using Joblib.
 - **Price Prediction:** Estimates a car's selling price from user-provided details.
 
@@ -44,9 +44,12 @@ Car-Price-Prediction/
 ├── Model/
 │   └── car_price_model.joblib
 │
-├── train.py
+├── Train.py
 ├── predict.py
+├── app.py
+├── static/
 ├── requirements.txt
+├── render.yaml
 └── README.md
 ```
 
@@ -79,9 +82,9 @@ The dataset contains information about used cars and their selling prices.
 
 ## 🧠 Algorithm Used
 
-### Random Forest Regression
+### Extra Trees Regression
 
-Random Forest Regression combines the predictions of multiple decision trees to estimate a continuous numerical value, such as a car's selling price.
+The Extra Trees Regressor combines predictions from randomized decision trees to estimate a continuous numerical value, such as a car's selling price.
 
 In this project, the model uses 300 decision trees and a fixed random seed for reproducibility.
 
@@ -138,7 +141,7 @@ data/cars.csv.csv
 Run:
 
 ```bash
-python train.py
+python Train.py
 ```
 
 The training program cleans the dataset, trains the model, displays evaluation metrics, and saves the trained model to:
@@ -172,9 +175,26 @@ The project evaluates model performance using the following metrics:
 |---|---|
 | R² Score | Measures how well the model explains price variation |
 | MAE | Measures the average absolute prediction error |
-| RMSE | Penalizes larger prediction errors more heavily |
+The training script reports train/test R² and test MAE when you run `Train.py`. The results depend on the dataset and model configuration.
 
-The actual scores and prediction errors will be displayed when you run `train.py`. They depend on the dataset and model configuration.
+## Run the web application
+
+Start the Flask app:
+
+```bash
+python app.py
+```
+
+Open <http://127.0.0.1:5000> in a browser. The model is loaded from
+`Model/car_price_model.joblib`.
+
+## Deploy to Render
+
+The repository includes a Render Blueprint in `render.yaml`. Push this
+repository to GitHub, then create a Blueprint in the
+[Render Dashboard](https://dashboard.render.com/) and select the repository.
+Render installs dependencies, starts the Flask app with Gunicorn, and checks
+`/api/health` to confirm the service is running.
 
 ## 📦 Model Output
 
@@ -191,7 +211,7 @@ This file contains the trained preprocessing and prediction pipeline. It can be 
 - Compare Random Forest with Linear Regression and Gradient Boosting.
 - Improve model performance through hyperparameter tuning.
 - Display prediction results using a visual dashboard.
-- Deploy the application online for public access.
+- Add monitoring and production settings to the Render deployment.
 
 ## ⚠️ Limitations
 
@@ -202,7 +222,7 @@ This file contains the trained preprocessing and prediction pipeline. It can be 
 
 ## 👨‍💻 Conclusion
 
-This project demonstrates how machine learning can be used to estimate used-car prices from historical data. By combining data preprocessing, Random Forest Regression, model evaluation, and model serialization, it provides a foundation for a practical car price estimation application.
+This project demonstrates how machine learning can be used to estimate used-car prices from historical data. By combining data preprocessing, Extra Trees regression, model evaluation, model serialization, and a Flask web application, it provides a foundation for a practical car price estimation application.
 
 ## 📄 License
 
