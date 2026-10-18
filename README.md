@@ -76,7 +76,7 @@ The dataset contains information about used cars and their selling prices.
 5. Separate input features and target price.
 6. Split the dataset into 80% training data and 20% testing data.
 7. Apply missing-value imputation and One-Hot Encoding.
-8. Train the Random Forest Regression model.
+8. Train the Extra Trees regression model.
 9. Evaluate predictions on training and testing data.
 10. Save the trained pipeline for future predictions.
 
@@ -206,7 +206,7 @@ This file contains the trained preprocessing and prediction pipeline. It can be 
 
 ## 🔮 Future Enhancements
 
-- Develop a web interface using Flask or Streamlit.
+- Extend the existing Flask web interface with additional features.
 - Add more features such as mileage, engine capacity, transmission, and car condition.
 - Compare Random Forest with Linear Regression and Gradient Boosting.
 - Improve model performance through hyperparameter tuning.
